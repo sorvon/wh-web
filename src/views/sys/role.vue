@@ -22,9 +22,12 @@
         <!--添加modal-->  
         <Modal :mask-closable="false" :visible.sync="newModal" :loading = "loading" v-model="newModal" width="600" title="新建" @on-ok="newOk('roleNew')" @on-cancel="cancel()">
             <Form ref="roleNew" :model="roleNew" :rules="ruleNew" :label-width="80" >
+                <Form-item label="角色:" prop="role">
+                    <Input v-model="roleNew.role" style="width: 204px"/>
+                </Form-item>
                 <Form-item label="角色名:" prop="name">
-                            <Input v-model="roleNew.name" style="width: 204px"/>
-                        </Form-item>
+                    <Input v-model="roleNew.name" style="width: 204px"/>
+                </Form-item>
                 <Form-item label="描述:" prop="describe">
                      <Input v-model="roleNew.describe" type="textarea" :autosize="{minRows: 2,maxRows: 5}"></Input>
                 </Form-item>
@@ -97,12 +100,18 @@
                 ruleNew:{
                     name: [
                         { type:'string',required: true, message: '输入角色名', trigger: 'blur' }
+                    ],
+                    role: [
+                        { type:'string',required: true, message: '输入角色', trigger: 'blur' }
                     ]
                 },
                 /*修改验证*/
                 ruleModify:{
                     name: [
                         { type:'string',required: true, message: '输入角色名', trigger: 'blur' }
+                    ],
+                    role: [
+                        { type:'string',required: true, message: '输入角色', trigger: 'blur' }
                     ]
                 },
                 /*表显示字段*/
@@ -206,6 +215,7 @@
             /*role实体初始化*/
             initRole(){
                 this.role.id = null;
+                this.role.role = null;
                 this.role.name = null;
                 this.role.modules = null;
                 this.role.describe = null;
@@ -213,6 +223,7 @@
             /*roleNew实体初始化*/
             initRoleNew(){
                 this.roleNew.id = null;
+                this.roleNew.role = null;
                 this.roleNew.name = null;
                 this.roleNew.modules = null;
                 this.roleNew.describe = null;
@@ -220,6 +231,7 @@
             /*roleModify实体初始化*/
             initRoleModify(){
                 this.roleModify.id = null;
+                this.roleModify.role = null;
                 this.roleModify.name = null;
                 this.roleModify.modules = null;
                 this.roleModify.describe = null;
@@ -227,6 +239,7 @@
             /*roleNew设置*/
             roleSet(e){
                 this.role.id = e.id;
+                this.role.role = e.role;
                 this.role.name = e.name;
                 this.role.modules = e.modules;
                 this.role.describe = e.describe;
@@ -234,6 +247,7 @@
             /*roleNew设置*/
             roleNewSet(e){
                 this.roleNew.id = e.id;
+                this.roleNew.role = e.role;
                 this.roleNew.name = e.name;
                 this.roleNew.modules = e.modules;
                 this.roleNew.describe = e.describe;
@@ -241,6 +255,7 @@
             /*roleModify设置*/
             roleModifySet(e){
                 this.roleModify.id = e.id;
+                this.roleModify.role = e.role;
                 this.roleModify.name = e.name;
                 this.roleModify.modules = e.modules;
                 this.roleModify.describe = e.describe;
